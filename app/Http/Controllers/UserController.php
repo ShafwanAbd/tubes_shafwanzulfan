@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Tugas;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -69,11 +71,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
         $model = new User;
-        $model->username = $request->username;
-        $model->fullname = $request->fullname;
+        $model->email = $request->email;
+        $model->name = $request->name;
         $model->universitas = $request->universitas;
         $model->fakultas = $request->fakultas;
         $model->jurusan = $request->jurusan;
@@ -106,7 +108,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = User::find($id);
+
+        return view('user.editProfile', compact(
+            'model'
+        ));
     }
 
     /**
@@ -116,9 +122,34 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        //
+        $model = User::find($id);
+        
+        DB::table('tugas')
+        ->where('email', $model->email)
+        ->update([
+            'email' => $request->email,
+            'owner' => $request->name,
+            'whatsapp' => $request->whatsapp,
+            'instagram' => $request->instagram,
+            'fakultas' => $request->fakultas,
+            'jurusan' => $request->jurusan
+        ]);
+
+        DB::table('users')
+        ->where('email', $model->email)
+        ->update([
+            'email' => $request->email,
+            'name' => $request->name,
+            'universitas' => $request->universitas,
+            'fakultas' => $request->fakultas,
+            'jurusan' => $request->jurusan,
+            'whatsapp' => $request->whatsapp,
+            'instagram' => $request->instagram
+        ]);
+
+        return redirect('user/'.$model->id)->with('success', 'Account Berhasil Diupdate!');
     }
 
     /**

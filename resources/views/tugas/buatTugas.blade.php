@@ -7,22 +7,6 @@
                 @csrf
                 <div class="row g-3">
                     <div class="col">
-                        <h3>Fakultas</h3>
-                    </div>
-                    <div class="col">
-                        <input type="text" name="fakultas" class="form-control" placeholder="Write Your Fakultas ...">
-                    </div>
-                </div>
-                <div class="row g-3">
-                    <div class="col">
-                        <h3>Jurusan</h3>
-                    </div>
-                    <div class="col">
-                        <input type="text" name="jurusan" class="form-control" placeholder="Write Your Jurusan ...">
-                    </div>
-                </div>
-                <div class="row g-3">
-                    <div class="col">
                         <h3>Kategori Tugas</h3>
                     </div>
                     <div class="col">
@@ -47,7 +31,7 @@
                 </div>
                 <div class="row g-3">
                     <div class="col">
-                        <h3>Harga</h3>
+                        <h3>Bayaran</h3>
                     </div>
                     <div class="col">
                         <input type="text" name="harga" class="form-control" placeholder="Write Your Harga ...">

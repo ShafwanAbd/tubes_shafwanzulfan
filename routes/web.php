@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\Tugas;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TugasController;
+use App\Http\Controllers\KonfirmasiController;
+use App\Http\Controllers\KirimTugasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +35,12 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/home_main', [HomeController::class, 'home_main']);
 
     Route::resource('user', UserController::class);
+    
     Route::resource('tugas', TugasController::class);
+
+    Route::resource('konfirmasi', KonfirmasiController::class);
+
+    Route::resource('kirimTugas', KirimTugasController::class);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

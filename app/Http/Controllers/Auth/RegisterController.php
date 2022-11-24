@@ -54,6 +54,8 @@ class RegisterController extends Controller
             'universitas' => ['required', 'string', 'max:255'],
             'fakultas' => ['required', 'string', 'max:255'],
             'jurusan' => ['required', 'string', 'max:255'],
+            'whatsapp' => ['string', 'max:255'],
+            'instagram' => ['string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);

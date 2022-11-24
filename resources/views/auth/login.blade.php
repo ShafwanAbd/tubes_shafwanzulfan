@@ -1,12 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.layoutRPL_main')
 
 @section('content')
+<br><br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <br>
             <div class="card">
-                <div class="card-header color-primary">{{ __('Login') }}</div>
+                <div class="card-header color-primary text-white">{{ __('Login') }}</div>
                 <br>
 
                 <div class="card-body">
@@ -55,12 +56,12 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn color-primary">
+                                <button type="submit" class="btn btn-primary text-white">
                                     {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-light" href="{{ route('password.request') }}">
+                                    <a class="btn btn-radius-50" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif

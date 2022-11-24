@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use App\Models\Konfirmasi;
 use App\Models\Tugas;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TugasController extends Controller
 {
@@ -15,17 +18,18 @@ class TugasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
+        $model = Auth::user();
         $datas = Tugas::paginate(10);
 
-        $keywordNama = "";
+        $keywordOwner = "";
         $keywordFakultas = "";
         $keywordJurusan = "";
         $keywordKategori = "";
 
-        if ($request->keywordNama){
-            $keywordNama = $request->keywordNama;
-            $datas = Tugas::where('nama', 'LIKE', '%'.$keywordNama.'%')
+        if ($request->keywordOwner){
+            $keywordOwner = $request->keywordOwner;
+            $datas = Tugas::where('owner', 'LIKE', '%'.$keywordOwner.'%')
                 ->paginate(10);
         } else if ($request->keywordFakultas){
             $keywordFakultas = $request->keywordFakultas;
@@ -44,7 +48,7 @@ class TugasController extends Controller
         $datas->withPath('tugas');
 
         return view('tugas.cariTugas', compact(
-            'datas', 'keywordNama', 'keywordFakultas', 'keywordJurusan', 'keywordKategori'
+            'model', 'datas', 'keywordOwner', 'keywordFakultas', 'keywordJurusan', 'keywordKategori'
         ));
     }
 
@@ -72,12 +76,18 @@ class TugasController extends Controller
     {
         $user = Auth::user();
         $model = new Tugas;
+
+        $model->owner = $user->name;
+        $model->email = $user->email;
+        $model->whatsapp = $user->whatsapp;
+        $model->instagram = $user->instagram;
         $model->fakultas = $user->fakultas;
         $model->jurusan = $user->jurusan;
         $model->kategori = $request->kategori;
         $model->deskripsi = $request->deskripsi;
         $model->deadline = $request->deadline;
         $model->harga = $request->harga;
+
         $model->save();
 
         return redirect('tugas')->with('success', 'Berhasil Menambahkan Tugas!');
@@ -91,10 +101,20 @@ class TugasController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $model = Tugas::find($id);
+        
+        $konfirmasi_value = DB::table('konfirmasi')
+            ->where('idTugas', $id)
+            ->where('name', $user->name)
+            ->value('konfirmasi');
+
+        $konfirmasi = Konfirmasi::where('name', $user->name)
+            ->where('idTugas', $id)
+            ->first();
 
         return view('tugas.detailTugas', compact(
-            'model'
+            'user', 'model', 'konfirmasi_value', 'konfirmasi'
         ));
     }
 
@@ -106,7 +126,11 @@ class TugasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Tugas::find($id);
+
+        return view('tugas.editTugas', compact(
+            'model'
+        ));
     }
 
     /**
@@ -118,7 +142,20 @@ class TugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $user = Auth::user();
+        $model = Tugas::find($id);
+        $model->owner = $user->name;
+        $model->email = $user->email;
+        $model->fakultas = $user->fakultas;
+        $model->jurusan = $user->jurusan;
+        $model->kategori = $request->kategori;
+        $model->deskripsi = $request->deskripsi;
+        $model->deadline = $request->deadline;
+        $model->harga = $request->harga;
+        $model->save();
+
+        return redirect('tugas')->with('success', 'Berhasil Mengupdate Tugas!');
     }
 
     /**
@@ -129,6 +166,8 @@ class TugasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Tugas::find($id);
+        $model->delete();
+        return redirect('tugas')->with('success', 'Berhasil Menghapus Tugas!');
     }
 }

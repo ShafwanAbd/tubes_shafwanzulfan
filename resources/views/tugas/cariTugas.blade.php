@@ -15,17 +15,66 @@
     <title>Toko Tugas</title>
 </head>
 
-<nav class="navbar navbar-expand-lg" id="navbarRPL">
-    <div class="container-fluid">
-        <a class="navbar-brand hover-shadow" href="{{ url('home') }}">Toko Tugas</a>
-    </div>
+<nav class="navbar navbar-expand-md navbar-light shadow-sm color-primary navbar-container" id="navbarRPL">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('/home') }}">
+            Toko Tugas
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarMenuRPL">
-        <div class="navbar-nav">
-            <a class="nav-link active hover-shadow" href="{{ url('home_main') }}">Home</a>
-            <a class="nav-link hover-shadow dropdown" href="{{ url('tugas') }}">Tugas</a>
-            <a class="nav-link hover-shadow" href="{{ url('user/'.Auth::id()) }}">Profile</a>
-            <a class="hover-shadow" href="{{ url('login') }}"><img src="{{ asset('img/login_icon.png') }}"></a>
+        <div class="collapse navbar-collapse" >
+            
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav me-auto">
+            </ul>
+
+            <div class="navbar-nav">
+            </div>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ms-auto" id="navbarMenuRPL">
+                <!-- Authentication Links -->
+                
+                <a class="nav-link active hover-shadow" href="{{ url('home_main') }}">Home</a>
+                <a class="nav-link hover-shadow dropdown" href="{{ url('tugas') }}">Tugas</a>
+                <a class="nav-link hover-shadow" href="{{ url('user/'.Auth::id()) }}">Profile</a>
+                @guest
+                    @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link hover-shadow" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link hover-shadow" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown hover-shadow">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle hover-shadow" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
         </div>
     </div>
 </nav>
@@ -36,9 +85,9 @@
             <div class="row">
                 <div class="col q">
                     <div class="left-side">
-                        <h2 class="item hover-shadow">Nama Pembuat</h2>
+                        <h2 class="item hover-shadow">Owner</h2>
                         <form method="GET" action="{{ url('tugas') }}">
-                            <input type="text" name="keywordNama" class="textinput" value="{{ $keywordNama }}">
+                            <input type="text" name="keywordOwner" class="textinput" value="{{ $keywordOwner }}">
                             <button type="submit" class="buttoninput"><img src="{{ asset('./img/search_icon.png') }}"></button>
                         </form>
                         <h2 class="item hover-shadow">Fakultas</h2>
@@ -56,14 +105,17 @@
                             <input type="text" name="keywordKategori" class="textinput" value="{{ $keywordKategori }}">
                             <button type="submit" class="buttoninput"><img src="{{ asset('./img/search_icon.png') }}"></button>
                         </form>
-                        <a class="btn" href="{{ url('tugas/create') }}">Buat Tugas</a>
+                        <div class="buttonHolder">
+                            <a class="btn first" href="{{ url('tugas/create') }}">Buat Tugas</a>
+                            <a class="btn" href="{{ url('tugas?keywordOwner='.$model->name) }}">Tugas Saya</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col w">
                     <div class="right-side">
                     <h1 class="judul">Cari Tugas</h1>
                     @if(Session::has('success'))
-                    <p class="alert alert-success" id="sixSeconds">{{ Session::get('success') }}</p>
+                        <p class="alert alert-success" id="sixSeconds">{{ Session::get('success') }}</p>
                     @endif
                     
                     @foreach($datas as $key=>$value)
@@ -108,8 +160,14 @@
                             @endif
                             <div class="isi">
                                 <div class="item-judul">
-                                    <h2>{{ $value->jurusan }}</h2>
-                                    <h3 class="right">{{ $value->kategori }}</h3>
+                                    <div class="item-judul-left">
+                                        <h4>{{ $value->fakultas }}</h4>
+                                        <h5>{{ $value->jurusan }}</h5>
+                                    </div>
+                                    <div class="item-judul-right">
+                                        <h5>{{ $value->owner }}</h5>
+                                        <h3 class="right">{{ $value->kategori }}</h3>
+                                    </div>
                                 </div>
                                 <div class="item-isi">
                                     <p>{{ $value->deskripsi }}</p>

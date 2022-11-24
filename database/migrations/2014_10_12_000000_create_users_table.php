@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('universitas');
             $table->string('fakultas');
             $table->string('jurusan');
+            $table->string('whatsapp')->nullable();
+            $table->string('instagram')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -29,12 +31,6 @@ return new class extends Migration
 
         DB::table('users')->insert(
             array(
-                ['name' => 'Muhammad Shafwan Abdullah',
-                'email' => 'shafwan@gmail.com',
-                'universitas' => 'Universitas Siliwangi',
-                'fakultas' => 'Teknik',
-                'jurusan' => 'Informatika',
-                'password' => '12345678'], 
             )
         );
     }

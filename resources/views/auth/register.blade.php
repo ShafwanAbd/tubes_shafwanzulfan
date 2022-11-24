@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.layoutRPL_main')
 
 @section('content')
+<br><br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header color-primary">{{ __('Register') }}</div>
+                <div class="card-header color-primary text-white">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -40,7 +41,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="universitas" class="col-md-4 col-form-label text-md-end">{{ __('universitas') }}</label>
+                            <label for="universitas" class="col-md-4 col-form-label text-md-end">{{ __('Universitas') }}</label>
 
                             <div class="col-md-6">
                                 <input id="universitas" type="text" class="form-control @error('universitas') is-invalid @enderror" name="universitas" value="{{ old('universitas') }}" required autocomplete="universitas">
@@ -54,7 +55,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="fakultas" class="col-md-4 col-form-label text-md-end">{{ __('fakultas') }}</label>
+                            <label for="fakultas" class="col-md-4 col-form-label text-md-end">{{ __('Fakultas') }}</label>
 
                             <div class="col-md-6">
                                 <input id="fakultas" type="text" class="form-control @error('fakultas') is-invalid @enderror" name="fakultas" value="{{ old('fakultas') }}" required autocomplete="fakultas">
@@ -68,7 +69,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="jurusan" class="col-md-4 col-form-label text-md-end">{{ __('jurusan') }}</label>
+                            <label for="jurusan" class="col-md-4 col-form-label text-md-end">{{ __('Jurusan') }}</label>
 
                             <div class="col-md-6">
                                 <input id="jurusan" type="text" class="form-control @error('jurusan') is-invalid @enderror" name="jurusan" value="{{ old('jurusan') }}" required autocomplete="jurusan">
@@ -105,7 +106,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary text-white">
                                     {{ __('Register') }}
                                 </button>
                             </div>
