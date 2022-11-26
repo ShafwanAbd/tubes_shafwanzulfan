@@ -113,10 +113,12 @@
             <h1>Contact Owner</h1>
             <div class="contact-isi">
                 <div class="left">
-                    @if (strlen($owner->photo) > 0)
-                        <img src="{{ asset('./photoUser/'.$owner->photo) }}">
-                    @else
-                        <img src="{{ asset('./img/profile.png')}}">
+                    @if ($owner)
+                        @if (strlen($owner->photo) > 0)
+                            <img src="{{ asset('./photoUser/'.$owner->photo) }}">
+                        @else
+                            <img src="{{ asset('./img/profile.png')}}">
+                        @endif
                     @endif
                 </div>
                 <div class="middle">
