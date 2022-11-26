@@ -20,7 +20,7 @@ class TugasController extends Controller
     public function index(Request $request)
     {   
         $model = Auth::user();
-        $datas = Tugas::paginate(10);
+        $datas = Tugas::inRandomOrder()->paginate(10);
 
         $keywordOwner = "";
         $keywordFakultas = "";
