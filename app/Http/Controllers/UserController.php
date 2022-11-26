@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Tugas;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -125,6 +126,26 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $model = User::find($id);
+
+        if ($request->file('photo')){
+            $file = $request->file('photo');
+            // $namaFile = time().str_replace(" ", "", $model->name);
+            $namaFile = "photoProfile_".$model->id.".png";
+            $file->move('photoUser', $namaFile);
+            $model->photo = $namaFile;
+
+            DB::table('tugas')
+            ->where('email', $model->email)
+            ->update([
+                'photo' => $namaFile,
+            ]);
+
+            DB::table('users')
+            ->where('email', $model->email)
+            ->update([
+                'photo' => $namaFile,
+            ]);
+        }
         
         DB::table('tugas')
         ->where('email', $model->email)

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('photo')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('universitas');
             $table->string('fakultas');
@@ -28,9 +29,16 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
+        
         DB::table('users')->insert(
             array(
+                ['name' => 'Muhammad Shafwan Abdullah',
+                'email' => 'shafwan@gmail.com',
+                'universitas' => 'Universitas Siliwangi',
+                'fakultas' => 'teknik',
+                'jurusan' => 'informatika',
+                'whatsapp' => '081311073610',
+                'password' => bcrypt('12345678')]
             )
         );
     }

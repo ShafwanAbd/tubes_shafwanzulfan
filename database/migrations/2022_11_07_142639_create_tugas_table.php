@@ -19,6 +19,7 @@ return new class extends Migration
 
             $table->string('owner');
             $table->string('email');
+            $table->string('photo')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('instagram')->nullable();
             $table->string('fakultas');

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('judul');
             $table->string('pesan')->nullable();
-            $table->string('linkTugas');
+            $table->string('fileTugas');
             $table->timestamps();
         });
     }

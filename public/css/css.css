@@ -196,11 +196,12 @@ footer .isi {
 }
 
 .signup .col {
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
 }
 
 .signup .col h3 {
     color: #2AA7DC;
+    font-size: 1.5rem;
 }
 
 .signup .row input {
@@ -210,18 +211,12 @@ footer .isi {
     border-radius: 50px;
 }
 
-.signup .sk {
-    margin-left: 13vw;
-    color: #2AA7DC;
-    text-decoration: none;
-}
-
 .signup .btn {
     margin-left: 23vw;
     color: #FFF;
     position: relative;
     font-size: clamp(20px, 2vw, 75px);
-    margin-top: 5vh;
+    margin-top: 2.5vh;
     margin-bottom: 10vh;
     background-color: #2FC1FF;
     border-radius: 50px;
@@ -268,6 +263,7 @@ footer .isi {
 
 .profile .card .card-body .left-side img {
     width: 100%;
+    border-radius: 50%;
 }
 
 .profile .card .card-body .right-side {
@@ -624,6 +620,15 @@ footer .isi {
     margin-bottom: 10vh;
 }
 
+.container-detailTugas .contact-isi a {
+    text-decoration: none;
+    color: #2AA7DC;
+}
+
+.container-detailTugas .contact-isi a:hover {
+    text-shadow: 0 0 5px #2AA7DC;
+}
+
 .container-detailTugas .contact-isi img {
     width: 100%;
 }
@@ -794,15 +799,21 @@ footer .isi {
     margin-bottom: 2vh;
 }
 
-.cariTugas .right-side .alert {
-    font-weight: 650;
+.cariTugas .right-side .item .container-image {
+    height: fit-content;
+    margin: auto 0 !important;
+    width: 30%;
+    padding: 1vh;
 }
 
-.cariTugas .right-side .item img {
+.cariTugas .right-side .item .container-image img {
     border-radius: 25px;
-    margin: 1vw;
-    width: 10vw;
+    width: 100%;
     object-fit: cover;
+}
+
+.cariTugas .right-side .alert {
+    font-weight: 650;
 }
 
 .cariTugas .right-side .item-judul {
@@ -860,6 +871,12 @@ footer .isi {
 
 
 /** EDIT TUGAS **/
+
+.container-edit .container-input {
+    width: fit-content;
+    margin-top: 2.5vh;
+    margin-left: 5vw;
+}
 
 .container-edit .edit-textinput-p,
 .container-edit .edit-textinput-h1,
@@ -924,6 +941,16 @@ footer .isi {
 
 .profile .card .card-body input:focus {
     text-shadow: 0 0 2.5px #006E9C;
+}
+
+.edit .card .card-body .left-side .container-input {
+    margin-top: 2.5vh;
+}
+
+.edit .card .card-body .left-side .container-input input {
+    margin: 0 auto;
+    font-size: 1rem;
+    width: 100%;
 }
 
 

@@ -8,6 +8,7 @@ use App\Models\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class KirimTugasController extends Controller
 {
@@ -66,8 +67,19 @@ class KirimTugasController extends Controller
                 'order_id' => rand(),
                 'gross_amount' => $tugas->harga
             ),
+
+            'item_details' => array(
+              [
+                "id" => $tugas->id,
+                "name" => $tugas->kategori,
+                "price" => $tugas->harga,
+                "quantity" => 1
+              ]
+            ),
+
             'customer_details' => array(
                 'first_name' => $konfirmasi->name,
+                'last_name' => "",
                 'email' => $konfirmasi->email,
                 'phone' => $konfirmasi->whatsapp,
             ),
@@ -119,8 +131,14 @@ class KirimTugasController extends Controller
         $model->name = $user->name;
         $model->judul = $request->judul;
         $model->pesan = $request->pesan;
-        $model->linkTugas = $request->linkTugas;
-
+        
+        if ($request->file('fileTugas')){
+            $file = $request->file('fileTugas');
+            // $namaFile = time().str_replace(" ", "", getClientOriginalName());
+            $namaFile = "kirimTugas_".str_replace(" ", "", $file->getClientOriginalName());
+            $file->move('fileTugas', $namaFile);
+            $model->fileTugas = $namaFile;
+        }
 
         $konfirmasi->konfirmasi++;
 

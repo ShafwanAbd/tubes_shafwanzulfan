@@ -7,13 +7,15 @@
 @endsection
 
 @section('content')
-    <form method="POST" action="{{ url('tugas/'.$model->id) }}">
+    <form method="POST" action="{{ url('tugas/'.$model->id) }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="_method" value="PATCH">
     <div class="container-detailTugas container-edit">
         <div class="row">
             <div class="col left-side">
-            @if ( $model->jurusan  == "Pendidikan Masyarakat")
+            @if ( strlen($model->photo) > 0)
+                <img src="{{ asset('photoTugas/'.$model->photo) }}">
+            @elseif ( $model->jurusan  == "Pendidikan Masyarakat")
                 <img src="{{ asset('img/jurusan/pendidikanMasyarakat.jpg') }}">
             @elseif ( $model->jurusan  == "Pendidikan Bahasa Indonesia")
                 <img src="{{ asset('img/jurusan/pendidikanBahasaIndonesia.jpg')}}">
@@ -50,6 +52,9 @@
             @else
                 <img src="{{ asset('./img/img1.png')}}">
             @endif
+            <div class="container-input">
+                <input type="file" name="photo" class="edit-textinput-desc">
+            </div>
             </div>
             <div class="col right-side">
                 <div class="q">

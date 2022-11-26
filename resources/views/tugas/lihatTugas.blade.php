@@ -18,7 +18,7 @@
                     <p>Email:       {{ $kirimTugas->email }}</p>
                     <p>Name:        {{ $kirimTugas->name }}</p>
                     <p>Pesan:       {{ $kirimTugas->pesan }}</p>
-                    <p>Link Tugas:  <a href="{{ $kirimTugas->linkTugas }}">{{ $kirimTugas->linkTugas }}</a></p>
+                    <p>Tugas:  <a href="{{ url('fileTugas/'.$kirimTugas->fileTugas) }}">{{ $kirimTugas->fileTugas }}</a></p>
                 </div>
                 <div class="lihatTugas-button">
                     <button class="btn btn-primary" id="pay-button">

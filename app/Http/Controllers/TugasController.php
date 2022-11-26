@@ -90,6 +90,16 @@ class TugasController extends Controller
 
         $model->save();
 
+        if ($request->file('photo')){
+            $file = $request->file('photo');
+            // $namaFile = time().str_replace(" ", "", $model->name);
+            $namaFile = "photoTugas_".$model->id.".png";
+            $file->move('photoTugas', $namaFile);
+            $model->photo = $namaFile;
+        }
+
+        $model->save();
+
         return redirect('tugas')->with('success', 'Berhasil Menambahkan Tugas!');
     }
 
@@ -108,13 +118,18 @@ class TugasController extends Controller
             ->where('idTugas', $id)
             ->where('name', $user->name)
             ->value('konfirmasi');
+    
+        $owner = DB::table('users')
+            ->where('email', $model->email)
+            ->get()
+            ->first();
 
         $konfirmasi = Konfirmasi::where('name', $user->name)
             ->where('idTugas', $id)
             ->first();
 
         return view('tugas.detailTugas', compact(
-            'user', 'model', 'konfirmasi_value', 'konfirmasi'
+            'user', 'model', 'konfirmasi_value', 'konfirmasi', 'owner'
         ));
     }
 
@@ -153,6 +168,16 @@ class TugasController extends Controller
         $model->deskripsi = $request->deskripsi;
         $model->deadline = $request->deadline;
         $model->harga = $request->harga;
+        $model->save();
+
+        if ($request->file('photo')){
+            $file = $request->file('photo');
+            // $namaFile = time().str_replace(" ", "", $model->name);
+            $namaFile = "tugasProfile_".$model->id.".png";
+            $file->move('photoTugas', $namaFile);
+            $model->photo = $namaFile;
+        }
+
         $model->save();
 
         return redirect('tugas')->with('success', 'Berhasil Mengupdate Tugas!');

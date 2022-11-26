@@ -11,7 +11,11 @@
             </div>
             <div class="card-body">
                 <div class="left-side">
-                    <img src="{{ asset('./img/profile.png') }}">
+                    @if (strlen($model->photo)>0)
+                        <img src="{{ asset('./photoUser/'.$model->photo) }}">
+                    @else
+                        <img src="{{ asset('./img/profile.png') }}">
+                    @endif
                 </div>
                 <div class="right-side">
                     <p>Nama:        {{ $model->name }}</p>

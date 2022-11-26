@@ -121,7 +121,10 @@
                     @foreach($datas as $key=>$value)
                     <a class="clickItem" href="{{ url('tugas/'.$value->id) }}">
                         <div class="item hover-zoom">
-                            @if ( $value->jurusan  == "Pendidikan Masyarakat")
+                            <div class="container-image">
+                            @if ( strlen($value->photo) > 0)
+                                <img src="{{ asset('./photoTugas/'.$value->photo) }}">
+                            @elseif ( $value->jurusan  == "Pendidikan Masyarakat")
                                 <img src="./img/jurusan/pendidikanMasyarakat.jpg">
                             @elseif ( $value->jurusan  == "Pendidikan Bahasa Indonesia")
                                 <img src="./img/jurusan/pendidikanBahasaIndonesia.jpg">
@@ -158,6 +161,7 @@
                             @else
                                 <img src="./img/img1.png">
                             @endif
+                            </div>
                             <div class="isi">
                                 <div class="item-judul">
                                     <div class="item-judul-left">

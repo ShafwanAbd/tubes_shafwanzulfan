@@ -10,7 +10,9 @@
         @endif
         <div class="row">
             <div class="col left-side">
-            @if ( $model->jurusan  == "Pendidikan Masyarakat")
+            @if ( strlen($model->photo) > 0)
+                <img src="{{ asset('./photoTugas/'.$model->photo) }}">
+            @elseif ( $model->jurusan  == "Pendidikan Masyarakat")
                 <img src="{{ asset('img/jurusan/pendidikanMasyarakat.jpg') }}">
             @elseif ( $model->jurusan  == "Pendidikan Bahasa Indonesia")
                 <img src="{{ asset('img/jurusan/pendidikanBahasaIndonesia.jpg')}}">
@@ -73,21 +75,21 @@
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">CAUTION</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Apakah Anda Yakin Untuk Menghapus Tugas?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                                    <form method="POST" action="{{ url('tugas/'.$model->id) }}">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button class="btn" type="submit" href="{{ url('tugas/'.$model->id) }}">Yakin</button>
-                                    </form>
-                                </div>
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">CAUTION</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah Anda Yakin Untuk Menghapus Tugas?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                        <form method="POST" action="{{ url('tugas/'.$model->id) }}">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button class="btn" type="submit" href="{{ url('tugas/'.$model->id) }}">Yakin</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,10 +113,14 @@
             <h1>Contact Owner</h1>
             <div class="contact-isi">
                 <div class="left">
-                    <img src="{{ asset('./img/profile.png')}}">
+                    @if (strlen($owner->photo) > 0)
+                        <img src="{{ asset('./photoUser/'.$owner->photo) }}">
+                    @else
+                        <img src="{{ asset('./img/profile.png')}}">
+                    @endif
                 </div>
                 <div class="middle">
-                    <h1>{{ $model->owner }}</h1>
+                    <a href="{{ url('user/'.$owner->id) }}"><h1>{{ $model->owner }}</h1></a>
                     <h3>{{ $model->fakultas }}</h3>
                     <h3>{{ $model->jurusan }}</h3>
                 </div>

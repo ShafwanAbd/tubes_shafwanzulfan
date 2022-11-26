@@ -1,7 +1,7 @@
 @extends('layouts.layoutRPL_main')
 
 @section('content')
-    <form method="POST" action="{{ url('user/'.$model->id) }}">
+    <form method="POST" action="{{ url('user/'.$model->id) }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="_method" value="PATCH">
     <div class="profile edit">
@@ -11,7 +11,14 @@
             </div>
             <div class="card-body">
                 <div class="left-side">
-                    <img src="{{ asset('./img/profile.png') }}">
+                    @if (strlen($model->photo)>0)
+                        <img src="{{ asset('./photoUser/'.$model->photo) }}">
+                    @else
+                        <img src="{{ asset('./img/profile.png') }}">
+                    @endif
+                    <div class="container-input">
+                        <input type="file" name="photo" value="{{ $model->photo }}">
+                    </div>
                 </div>
                 <div class="right-side">
                     <div class="flex">
