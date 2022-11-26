@@ -286,11 +286,14 @@ footer .isi {
 }
 
 .profile .left-side {
-    width: 40%;
+    width: 50vh;
+    height: 50vh;
 }
 
 .profile .left-side img {
     width: 100%;
+    object-fit: cover;
+    height: 100%;
 }
 
 .profile .left-side h4 {
@@ -803,12 +806,14 @@ footer .isi {
     height: fit-content;
     margin: auto 0 !important;
     width: 30%;
+    height: 30vh;
     padding: 1vh;
 }
 
 .cariTugas .right-side .item .container-image img {
     border-radius: 25px;
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
