@@ -116,13 +116,17 @@
                     @if ($owner)
                         @if (strlen($owner->photo) > 0)
                             <img src="{{ asset('./photoUser/'.$owner->photo) }}">
-                        @else
-                            <img src="{{ asset('./img/profile.png')}}">
-                        @endif
+                            @endif
+                    @else
+                        <img src="{{ asset('./img/profile.png')}}">
                     @endif
                 </div>
                 <div class="middle">
-                    <a href="{{ url('user/'.$owner->id) }}"><h1>{{ $model->owner }}</h1></a>
+                    @if ($owner)
+                        <a href="{{ url('user/'.$owner->id) }}"><h1>{{ $model->owner }}</h1></a>
+                    @else
+                        <a href="#"><h1>{{ $model->owner }}</h1></a>
+                    @endif
                     <h3>{{ $model->fakultas }}</h3>
                     <h3>{{ $model->jurusan }}</h3>
                 </div>
