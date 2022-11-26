@@ -134,12 +134,6 @@ class UserController extends Controller
             $file->move('photoUser', $namaFile);
             $model->photo = $namaFile;
 
-            DB::table('tugas')
-            ->where('email', $model->email)
-            ->update([
-                'photo' => $namaFile,
-            ]);
-
             DB::table('users')
             ->where('email', $model->email)
             ->update([
