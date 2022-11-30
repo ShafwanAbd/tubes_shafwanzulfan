@@ -99,14 +99,12 @@ nav .navbar-brand {
 footer {
     color: white;
     width: 100%;
+    padding: 10vh 5vw;
     margin-top: 20vh;
-    height: 10vh;
     background-color: #00577B !important;
 }
 
 footer .isi {
-    margin-top: 2vh;
-    margin-right: 5vw;
     float: right;
 }
 

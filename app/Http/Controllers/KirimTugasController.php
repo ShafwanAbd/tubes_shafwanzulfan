@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\KirimTugas;
 use App\Models\Konfirmasi;
+use App\Models\Order;
 use App\Models\Tugas;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -78,10 +80,11 @@ class KirimTugasController extends Controller
             ),
 
             'customer_details' => array(
-                'first_name' => $konfirmasi->name,
+                // 'first_name' => $konfirmasi->name,
+                'first_name' => Auth::user()->name,
                 'last_name' => "",
-                'email' => $konfirmasi->email,
-                'phone' => $konfirmasi->whatsapp,
+                'email' => Auth::user()->email,
+                'phone' => Auth::user()->whatsapp,
             ),
         );
         
@@ -92,10 +95,32 @@ class KirimTugasController extends Controller
             ->first();
 
         return view('tugas.lihatTugas', compact(
-            'user', 'kirimTugas', 'snapToken'
+            'user', 'kirimTugas', 'snapToken', 'id'
         ));
     }
 
+    public function show_post(Request $request, $id)
+    {
+        $json = json_decode($request->get('json'));
+        $order = new Order;
+        $order->status = $json->transaction_status;
+        $order->name = Auth::user()->name;
+        $order->email = Auth::user()->email;
+        $order->nomerHP = Auth::user()->whatsapp;
+        $order->transaction_id = $json->transaction_id;
+        $order->order_id = $json->order_id;
+        $order->gross_amount = $json->gross_amount;
+        $order->payment_type = $json->payment_type;
+        $order->payment_code = isset($json->payment_code) ? $json->payment_code : null;
+        $order->pdf_url = isset($json->pdf_url) ? $json->pdf_url : null;;
+        $order->save();
+
+        $konfirmasi = DB::table('konfirmasi')->where('id', $id)->first();
+        $konfirmasi = Konfirmasi::find($konfirmasi->id);
+    
+        $konfirmasi->delete();
+        return redirect('/konfirmasi/'.$konfirmasi->idTugas)->with('success', 'Berhasil Membayar Tugas!');
+    }
     /**
      * Show the form for editing the specified resource.
      *

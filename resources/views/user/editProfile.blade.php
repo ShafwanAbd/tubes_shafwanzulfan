@@ -7,7 +7,7 @@
     <div class="profile edit">
         <div class="card">
             <div class="card-header">
-                PROFILE
+                EDIT PROFILE
             </div>
             <div class="card-body">
                 <div class="left-side">

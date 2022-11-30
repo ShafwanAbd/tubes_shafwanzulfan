@@ -13,48 +13,48 @@
     <div class="container-detailTugas container-edit">
         <div class="row">
             <div class="col left-side">
-            @if ( strlen($model->photo) > 0)
-                <img src="{{ asset('photoTugas/'.$model->photo) }}">
-            @elseif ( $model->jurusan  == "Pendidikan Masyarakat")
-                <img src="{{ asset('img/jurusan/pendidikanMasyarakat.jpg') }}">
-            @elseif ( $model->jurusan  == "Pendidikan Bahasa Indonesia")
-                <img src="{{ asset('img/jurusan/pendidikanBahasaIndonesia.jpg')}}">
-            @elseif ( $model->jurusan  == "Pendidikan Bahasa Inggris")
-                <img src="{{ asset('./img/jurusan/pendidikanBahasaInggris.jpg')}}">
-            @elseif ( $model->jurusan  == "Pendidikan Matematika")
-                <img src="{{ asset('./img/jurusan/pendidikanMatematika.jpg')}}">
-            @elseif ( $model->jurusan  == "Pendidikan Biologi")
-                <img src="{{ asset('./img/jurusan/pendidikanBiologi.jpg')}}">
-            @elseif ( $model->jurusan  == "Kesehatan Masyarakat")
-                <img src="{{ asset('./img/jurusan/kesehatanMasyarakat.jpg')}}">
-            @elseif ( $model->jurusan  == "Gizi")
-                <img src="{{ asset('./img/jurusan/gizi.jpg')}}">
-            @elseif ( $model->jurusan  == "Ilmu Politik")
-                <img src="{{ asset('./img/jurusan/ilmuPolitik.jpg')}}">
-            @elseif ( $model->jurusan  == "Agribisnis")
-                <img src="{{ asset('./img/jurusan/agribisnis.jpg')}}">
-            @elseif ( $model->jurusan  == "Agroteknologi")
-                <img src="{{ asset('./img/jurusan/agroteknologi.jpg')}}">
-            @elseif ( $model->jurusan  == "Ekonomi Pembangunan")
-                <img src="{{ asset('./img/jurusan/ekonomiPembangunan.jpg')}}">
-            @elseif ( $model->jurusan  == "Ekonomi Manajemen")
-                <img src="{{ asset('./img/jurusan/ekonomiManajemen.jpg')}}">
-            @elseif ( $model->jurusan  == "Ekonomi Akuntansi")
-                <img src="{{ asset('./img/jurusan/ekonomiAkuntansi.jpg')}}">
-            @elseif ( $model->jurusan  == "Ekonomi Keuangan Dan Perbankan")
-                <img src="{{ asset('./img/jurusan/ekonomiKeuanganDanPerbankan.jpg')}}">
-            @elseif ( $model->jurusan  == "Teknik Sipil")
-                <img src="{{ asset('./img/jurusan/teknikSipil.jpg')}}">
-            @elseif ( $model->jurusan  == "Teknik Elektro")
-                <img src="{{ asset('./img/jurusan/teknikElektro.jpg')}}">
-            @elseif ( $model->jurusan  == "Informatika")
-                <img src="{{ asset('./img/jurusan/informatika.jpg')}}">
-            @else
-                <img src="{{ asset('./img/img1.png')}}">
-            @endif
-            <div class="container-input">
-                <input type="file" name="photo" class="edit-textinput-desc">
-            </div>
+                @if ( strlen($model->photo) > 0)
+                    <img src="{{ asset('photoTugas/'.$model->photo) }}">
+                @elseif ( $model->jurusan  == "Pendidikan Masyarakat")
+                    <img src="{{ asset('img/jurusan/pendidikanMasyarakat.jpg') }}">
+                @elseif ( $model->jurusan  == "Pendidikan Bahasa Indonesia")
+                    <img src="{{ asset('img/jurusan/pendidikanBahasaIndonesia.jpg')}}">
+                @elseif ( $model->jurusan  == "Pendidikan Bahasa Inggris")
+                    <img src="{{ asset('./img/jurusan/pendidikanBahasaInggris.jpg')}}">
+                @elseif ( $model->jurusan  == "Pendidikan Matematika")
+                    <img src="{{ asset('./img/jurusan/pendidikanMatematika.jpg')}}">
+                @elseif ( $model->jurusan  == "Pendidikan Biologi")
+                    <img src="{{ asset('./img/jurusan/pendidikanBiologi.jpg')}}">
+                @elseif ( $model->jurusan  == "Kesehatan Masyarakat")
+                    <img src="{{ asset('./img/jurusan/kesehatanMasyarakat.jpg')}}">
+                @elseif ( $model->jurusan  == "Gizi")
+                    <img src="{{ asset('./img/jurusan/gizi.jpg')}}">
+                @elseif ( $model->jurusan  == "Ilmu Politik")
+                    <img src="{{ asset('./img/jurusan/ilmuPolitik.jpg')}}">
+                @elseif ( $model->jurusan  == "Agribisnis")
+                    <img src="{{ asset('./img/jurusan/agribisnis.jpg')}}">
+                @elseif ( $model->jurusan  == "Agroteknologi")
+                    <img src="{{ asset('./img/jurusan/agroteknologi.jpg')}}">
+                @elseif ( $model->jurusan  == "Ekonomi Pembangunan")
+                    <img src="{{ asset('./img/jurusan/ekonomiPembangunan.jpg')}}">
+                @elseif ( $model->jurusan  == "Ekonomi Manajemen")
+                    <img src="{{ asset('./img/jurusan/ekonomiManajemen.jpg')}}">
+                @elseif ( $model->jurusan  == "Ekonomi Akuntansi")
+                    <img src="{{ asset('./img/jurusan/ekonomiAkuntansi.jpg')}}">
+                @elseif ( $model->jurusan  == "Ekonomi Keuangan Dan Perbankan")
+                    <img src="{{ asset('./img/jurusan/ekonomiKeuanganDanPerbankan.jpg')}}">
+                @elseif ( $model->jurusan  == "Teknik Sipil")
+                    <img src="{{ asset('./img/jurusan/teknikSipil.jpg')}}">
+                @elseif ( $model->jurusan  == "Teknik Elektro")
+                    <img src="{{ asset('./img/jurusan/teknikElektro.jpg')}}">
+                @elseif ( $model->jurusan  == "Informatika")
+                    <img src="{{ asset('./img/jurusan/informatika.jpg')}}">
+                @else
+                    <img src="{{ asset('./img/img1.png')}}">
+                @endif
+                <div class="container-input">
+                    <input type="file" name="photo" class="edit-textinput-desc">
+                </div>
             </div>
             <div class="col right-side">
                 <div class="q">

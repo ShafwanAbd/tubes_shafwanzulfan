@@ -108,10 +108,12 @@ class KonfirmasiController extends Controller
      */
     public function destroy($id)
     {
+        $konfirmasi = DB::table('konfirmasi')->where('id', $id)->first();
+
         $model = Konfirmasi::find($id);
 
         $model->delete();
 
-        return redirect('konfirmasi/'.$id)->with('success', 'Berhasil Menghapus Penjoki!');
+        return redirect('konfirmasi/'.$konfirmasi->idTugas)->with('success', 'Berhasil Menghapus Penjoki!');
     }
 }

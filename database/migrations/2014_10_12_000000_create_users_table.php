@@ -38,6 +38,22 @@ return new class extends Migration
                 'fakultas' => 'teknik',
                 'jurusan' => 'informatika',
                 'whatsapp' => '081311073610',
+                'password' => bcrypt('12345678')],
+                
+                ['name' => 'Zulfan Syahidan Alfarra',
+                'email' => 'zulfan@gmail.com',
+                'universitas' => 'Universitas Siliwangi',
+                'fakultas' => 'teknik',
+                'jurusan' => 'informatika',
+                'whatsapp' => '081311073610',
+                'password' => bcrypt('12345678')],
+                
+                ['name' => 'ADMIN',
+                'email' => 'admin@gmail.com',
+                'universitas' => 'ADMIN',
+                'fakultas' => 'ADMIN',
+                'jurusan' => 'ADMIN',
+                'whatsapp' => '0000000000000',
                 'password' => bcrypt('12345678')]
             )
         );

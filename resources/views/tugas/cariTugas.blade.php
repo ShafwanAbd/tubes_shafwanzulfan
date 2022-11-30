@@ -159,7 +159,7 @@
                             @elseif ( $value->jurusan  == "Informatika")
                                 <img src="./img/jurusan/informatika.jpg">
                             @else
-                                <img src="./img/img1.png">
+                                <img src="./img/book1.png">
                             @endif
                             </div>
                             <div class="isi">

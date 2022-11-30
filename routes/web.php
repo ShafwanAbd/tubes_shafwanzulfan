@@ -29,8 +29,6 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function(){
 
-    Route::post('/tugas/order', [OrderController::class, 'order']);
-
     Route::get('/home', [HomeController::class, 'home']);
     Route::get('/home_main', [HomeController::class, 'home_main']);
 
@@ -41,6 +39,8 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('konfirmasi', KonfirmasiController::class);
 
     Route::resource('kirimTugas', KirimTugasController::class);
+
+    Route::post('/kirimTugas_order/{id}', [KirimTugasController::class, 'show_post']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
