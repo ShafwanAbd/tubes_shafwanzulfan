@@ -227,7 +227,7 @@ footer .isi {
 .profile .alert {
     position: fixed;
     width: 70vw;
-    margin-top: -8vh;
+    margin-top: 0.5vh;
     z-index: 999;
     font-weight: 750;
 }
@@ -450,7 +450,6 @@ footer .isi {
     background-color: #C5FFCB;
     z-index: 1;
     font-weight: 650;
-    text-align: center;
     width: 50vw;
     position: fixed;
     margin: 10vh 25vw;
@@ -526,11 +525,8 @@ footer .isi {
 }
 
 .container-detailTugas .alert {
-    margin: 0 auto;
-    margin-top: 15vh;
     position: fixed !important;
     width: 70vw;
-    margin-top: -8vh;
     z-index: 999;
     font-weight: 750;
     margin-left: 10vw;
