@@ -119,7 +119,7 @@ class KirimTugasController extends Controller
         $konfirmasi = Konfirmasi::find($konfirmasi->id);
     
         $konfirmasi->delete();
-        return redirect('/konfirmasi/'.$konfirmasi->idTugas)->with('success', 'Berhasil Membayar Tugas!');
+        return redirect('/konfirmasi/'.$konfirmasi->idTugas)->with('success', 'Berhasil Membayar Sepatu!');
     }
     /**
      * Show the form for editing the specified resource.
