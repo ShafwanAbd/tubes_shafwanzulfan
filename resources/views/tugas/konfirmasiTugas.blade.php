@@ -24,41 +24,44 @@
                     {{ $i = 0 }}
                 </div>
                 @foreach($datas as $key=>$value)
-                <div class="hidden">
-                    {{ $i++ }}
-                </div>
-                <tr>
-                    <th scope="row">{{ $i }}</th>
-                    <td>{{ $value->name }}</td>
-                    <td>{{ $value->universitas }}</td>
-                    <td>{{ $value->email }}</td>
-                    <td class="buttonKonfirmasi">
-                        @if($value->konfirmasi == 1)
-                        <form method="POST" action="{{ url('konfirmasi/'.$value->id) }}">
-                            @csrf
-                            <input type="hidden" name="_method" value="PATCH">
-                            <button class="btn btn-accept" type="submit">
-                                <img src="{{ asset('img/accept.png') }}">
-                            </button>
-                        </form>
-                        <form method="POST" action="{{ url('konfirmasi/'.$value->id) }}">
-                            @csrf
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-decline" type="submit">
-                                <img src="{{ asset('img/decline.png') }}">
-                            </button>
-                        </form>
-                        @elseif($value->konfirmasi == 2)
-                            <a class="btn btn-accept disabled">
-                                Menunggu Tugas
-                            </a>
-                        @elseif($value->konfirmasi == 3)
-                            <a class="btn btn-accept final-btn" href="{{ url('kirimTugas/'.$value->id) }}">
-                                Lihat Tugas
-                            </a>
-                        @endif
-                    </td>
-                </tr>
+                    @if($value->konfirmasi == 0)
+                    @else
+                    <div class="hidden">
+                        {{ $i++ }}
+                    </div>
+                    <tr>
+                        <th scope="row">{{ $i }}</th>
+                        <td>{{ $value->name }}</td>
+                        <td>{{ $value->universitas }}</td>
+                        <td>{{ $value->email }}</td>
+                        <td class="buttonKonfirmasi">
+                            @if($value->konfirmasi == 1)
+                            <form method="POST" action="{{ url('konfirmasi/'.$value->id) }}">
+                                @csrf
+                                <input type="hidden" name="_method" value="PATCH">
+                                <button class="btn btn-accept" type="submit">
+                                    <img src="{{ asset('img/accept.png') }}">
+                                </button>
+                            </form>
+                            <form method="POST" action="{{ url('konfirmasi/'.$value->id) }}">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button class="btn btn-decline" type="submit">
+                                    <img src="{{ asset('img/decline.png') }}">
+                                </button>
+                            </form>
+                            @elseif($value->konfirmasi == 2)
+                                <a class="btn btn-accept disabled">
+                                    Menunggu Tugas
+                                </a>
+                            @elseif($value->konfirmasi == 3)
+                                <a class="btn btn-accept final-btn" href="{{ url('kirimTugas/'.$value->id) }}">
+                                    Lihat Tugas
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>

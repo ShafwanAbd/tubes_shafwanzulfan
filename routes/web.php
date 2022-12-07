@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('tugas', TugasController::class);
 
     Route::resource('konfirmasi', KonfirmasiController::class);
+    Route::get('konfirmasiAdminBayar', [KonfirmasiController::class, 'indexAdminBayar']);
+    Route::get('hapus_done/{id}', [KonfirmasiController::class, 'hapus_done']);
     Route::get('hapus_order/{id}', [KonfirmasiController::class, 'hapus_order']);
 
     Route::resource('kirimTugas', KirimTugasController::class);

@@ -25,6 +25,25 @@ class KonfirmasiController extends Controller
         ));
     }
 
+    public function indexAdminBayar()
+    {
+        $datas = Konfirmasi::where('done', 1)->get();
+
+        return view('tugas.konfirmasiAdminBayar', compact(
+            'datas'
+        ));
+    }
+
+    public function hapus_done($id)
+    {
+        $model = Konfirmasi::find($id);
+
+        $model->done = 0;
+        $model->save();
+
+        return redirect('konfirmasiAdminBayar')->with('success', 'Berhasil Membayar Penjoki!');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -83,13 +102,22 @@ class KonfirmasiController extends Controller
         $model = new Konfirmasi;
         $tugas = Tugas::find($id);
         $user = Auth::user();
+        $owner = Konfirmasi::where('id', Auth::user()->id)->first();
 
+        if ($owner != null){
+            $temp_done = $owner->done;
+            $owner->delete();
+        }
+        $model->id = Auth::user()->id;
         $model->idTugas = $id;
         $model->name = DB::table('users')->where('email', $user->email)->value('name');
         $model->universitas = DB::table('users')->where('email', $user->email)->value('universitas');
         $model->email = $user->email;
         $model->name = $user->name;
         $model->konfirmasi = 1; // 1 for exist, 2 for waiting, 3 for done tugas
+        if(isset($temp_done) ? true : false){
+            $model->done = $temp_done;
+        }
 
         $model->save(); 
 
@@ -126,7 +154,8 @@ class KonfirmasiController extends Controller
 
         $model = Konfirmasi::find($id);
 
-        $model->delete();
+        $model->konfirmasi = 0;
+        $model->save();
 
         return redirect('konfirmasi/'.$konfirmasi->idTugas)->with('success', 'Berhasil Menghapus Penjoki!');
     }

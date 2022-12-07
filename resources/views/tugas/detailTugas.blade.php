@@ -82,15 +82,26 @@
                     <div class="r2">
                         @if ($konfirmasi_value == 1)
                             <a class="btn disabled">Menunggu Konfirmasi</a>
+                            @if ($konfirmasi->done == 1)
+                                <a class="btn done" data-bs-toggle="modal" data-bs-target="#exampleModal2">Done <img src="{{ asset('img/list 1 white.png') }} "></a>
+                            @endif
                         @elseif ($konfirmasi_value == 2)
                             <a class="btn" href="{{ url('kirimTugas/'.$konfirmasi->id.'/edit') }}">Kirim Tugas</a>
+                            @if ($konfirmasi->done == 1)
+                                <a class="btn done" data-bs-toggle="modal" data-bs-target="#exampleModal2">Done <img src="{{ asset('img/list 1 white.png') }} "></a>
+                            @endif
                         @elseif ($konfirmasi_value == 3)
                             <a class="btn disabled">Menunggu Bayaran</a>
-                        @elseif ($konfirmasi_value == 4)
-                            <a class="btn" href="{{ url('konfirmasi/'.$model->id.'/edit') }}">Kerjakan</a>
-                            <a class="btn done" data-bs-toggle="modal" data-bs-target="#exampleModal2">Done <img src="{{ asset('img/list 1 white.png') }} "></a>
+                            @if ($konfirmasi->done == 1)
+                                <a class="btn done" data-bs-toggle="modal" data-bs-target="#exampleModal2">Done <img src="{{ asset('img/list 1 white.png') }} "></a>
+                            @endif
                         @else
                             <a class="btn" href="{{ url('konfirmasi/'.$model->id.'/edit') }}">Kerjakan</a>
+                            @if(isset($konfirmasi->done) ? true : false)
+                                @if ($konfirmasi->done == 1)
+                                    <a class="btn done" data-bs-toggle="modal" data-bs-target="#exampleModal2">Done <img src="{{ asset('img/list 1 white.png') }} "></a>
+                                @endif
+                            @endif
                         @endif
                     </div>
                     @endif

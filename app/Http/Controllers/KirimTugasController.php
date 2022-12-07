@@ -117,10 +117,14 @@ class KirimTugasController extends Controller
 
         $konfirmasi = DB::table('konfirmasi')->where('id', $id)->first();
         $konfirmasi = Konfirmasi::find($konfirmasi->id);
+        $kirimTugas = KirimTugas::find($konfirmasi->id);
     
-        $konfirmasi->konfirmasi++;
-        $konfirmasi->save();
+        $kirimTugas->delete();
         
+        $konfirmasi->konfirmasi = 0;
+        $konfirmasi->done = 1;
+        $konfirmasi->save();
+
         return redirect('/konfirmasi/'.$konfirmasi->idTugas)->with('success', 'Berhasil Membayar Tugas!');
     }
     /**
@@ -151,6 +155,7 @@ class KirimTugasController extends Controller
         $user = Auth::user();
         $konfirmasi = Konfirmasi::find($id);
         $model = new KirimTugas();
+        $model2 = KirimTugas::find($id);
         
         $model->id = $konfirmasi->id;
         $model->idTugas = $konfirmasi->idTugas; //

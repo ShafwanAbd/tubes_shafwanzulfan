@@ -6,9 +6,9 @@
 @section('content')
     <div class="container-konfirmasiTugas konfirmasiAdmin">
         <div class="dropdown">
-            <h2 class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Daftar Transaksi</h2>
+            <h2 class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Pembayaran Joki</h2>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ url('konfirmasiAdminBayar') }}">Pembayaran Joki</a></li>
+                <li><a class="dropdown-item" href="{{ url('konfirmasi') }}">Daftar Transaksi</a></li>
             </ul>
         </div>
         @if(Session::has('success'))
@@ -20,9 +20,8 @@
                     <th scope="col">No</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Order ID</th>
+                    <th scope="col">Universitas</th>
                     <th scope="col">Harga</th>
-                    <th scope="col">Payment Type</th>
                     <th scope="col">Created At</th>
                 </tr>
             </thead>
@@ -36,18 +35,14 @@
                 </div>
                 <tr>
                     <th scope="row">{{ $i }}</th>
-                    <td>{{ $value->name }}</td>
+                    <td><a class="clean" href="#">{{ $value->name }}</a></td>
                     <td>{{ $value->email }}</td>
-                    <td>{{ $value->order_id }}</td>
-                    <td>{{ $value->gross_amount }}</td>
-                    <td>{{ $value->payment_type }}</td>
+                    <td>{{ $value->universitas }}</td>
+                    <td>{{ DB::table('Tugas')->where('id', $value->idTugas)->value('harga') }}</td>
                     <td>{{ $value->created_at }}</td>
                     <td class="buttonKonfirmasi">
-                        <a class="btn btn-9 first" href="{{ $value->pdf_url }}">
-                            Lihat Invoice
-                        </a>
-                        <a class="btn btn-9 hapus" href="{{ url('hapus_order/'.$value->id) }}">
-                            Hapus
+                        <a class="btn btn-9 first" href="{{ url('hapus_done/'.$value->id) }}">
+                            Bayar
                         </a>
                     </td>
                 </tr>

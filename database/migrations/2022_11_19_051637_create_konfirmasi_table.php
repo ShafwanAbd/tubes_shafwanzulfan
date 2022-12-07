@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('universitas');
             $table->integer('konfirmasi');
+            $table->integer('done')->nullable();
             $table->timestamps();
         });
     }
