@@ -57,6 +57,11 @@
                             <a class="nav-link active hover-shadow" href="{{ url('home_main') }}">Home</a>
                             <a class="nav-link hover-shadow dropdown" href="{{ url('tugas') }}">Tugas</a>
                             <a class="nav-link hover-shadow" href="{{ url('user/'.Auth::id()) }}">Profile</a>
+                            @if(Auth::user())
+                                @if(Auth::user()->name == "ADMIN")
+                                    <a class="nav-link hover-shadow" href="{{ url('konfirmasi') }}">Transaksi</a>
+                                @endif
+                            @endif
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle hover-shadow" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

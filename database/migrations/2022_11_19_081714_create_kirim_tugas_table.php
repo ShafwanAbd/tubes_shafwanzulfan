@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('idTugas');
             $table->string('email');
             $table->string('name');
-            $table->string('judul');
             $table->string('pesan')->nullable();
             $table->string('fileTugas');
             $table->timestamps();

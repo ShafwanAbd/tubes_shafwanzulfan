@@ -43,6 +43,11 @@
                 <a class="nav-link active hover-shadow" href="{{ url('home_main') }}">Home</a>
                 <a class="nav-link hover-shadow dropdown" href="{{ url('tugas') }}">Tugas</a>
                 <a class="nav-link hover-shadow" href="{{ url('user/'.Auth::id()) }}">Profile</a>
+                @if(Auth::user())
+                    @if(Auth::user()->name == "ADMIN")
+                        <a class="nav-link hover-shadow" href="{{ url('konfirmasi') }}">Transaksi</a>
+                    @endif
+                @endif
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
@@ -177,7 +182,7 @@
                                     <p>{{ $value->deskripsi }}</p>
                                     <div class="item-info">
                                         <h4>Deadline: {{ $value->deadline }}</h4>
-                                        <h4 class="right">Harga: {{ $value->harga }}</h4>
+                                        <h4 class="right">Harga: {{ @money($value->harga) }}</h4>
                                     </div>
                                 </div>
                             </div>

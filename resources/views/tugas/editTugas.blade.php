@@ -50,7 +50,7 @@
                 @elseif ( $model->jurusan  == "Informatika")
                     <img src="{{ asset('./img/jurusan/informatika.jpg')}}">
                 @else
-                    <img src="{{ asset('./img/img1.png')}}">
+                    <img src="{{ asset('./img/book1.png')}}">
                 @endif
                 <div class="container-input">
                     <input type="file" name="photo" class="edit-textinput-desc">

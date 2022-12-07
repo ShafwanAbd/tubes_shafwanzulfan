@@ -533,11 +533,15 @@ footer .isi {
 }
 
 .container-detailTugas .left-side {
+    width: fit-content;
+    height: 60vh;
     margin-right: -20vw;
 }
 
 .container-detailTugas .left-side img {
+    object-fit: cover;
     width: 30vw;
+    height: 100%;
 }
 
 .container-detailTugas .right-side {}
@@ -580,14 +584,18 @@ footer .isi {
     background-color: #FF2F2F !important;
 }
 
-.container-detailTugas .right-side .user-on .modal {
+.container-detailTugas .modal {
     margin-top: 25vh;
 }
 
-.container-detailTugas .right-side .user-on .modal .modal-footer .btn {
-    padding: 0;
-    margin-top: 0 !important;
-    width: fit-content;
+.container-detailTugas .modal-footer .yakin {
+    background-color: #2FC1FF;
+    color: #FFF;
+}
+
+.container-detailTugas .modal-footer .tidak {
+    background-color: #006E9C;
+    color: #FFF;
 }
 
 .container-detailTugas .q {}
@@ -598,6 +606,27 @@ footer .isi {
 
 .container-detailTugas .e {
     margin-top: 6vw;
+}
+
+.container-detailTugas .r2 .done {
+    background-color: red;
+    width: 2vw !important;
+    height: 7vh;
+    padding: 1vh 0;
+    margin: 0 1vw;
+    margin-top: 5vh;
+    font-size: 1.5rem;
+    color: #FFF;
+    border-radius: 50rem;
+    background-color: #006E9C;
+    float: right;
+}
+
+.container-detailTugas .r2 .done img {
+    margin-left: 0.5vw;
+    object-fit: fill;
+    width: 15%;
+    height: 70%;
 }
 
 .right-side .user-on {}
@@ -1100,4 +1129,22 @@ footer .isi {
     font-size: 1.5rem;
     padding: 1vh 5vw !important;
     margin-right: 5vw;
+}
+
+
+/** KONFIRMASI ADMIN **/
+
+.konfirmasiAdmin {}
+
+.konfirmasiAdmin .first {
+    margin-right: 0.5vw;
+}
+
+.konfirmasiAdmin .btn {
+    color: #FFF;
+    background-color: #2FC1FF !important;
+}
+
+.konfirmasiAdmin .hapus {
+    background-color: #FF2F2F !important;
 }

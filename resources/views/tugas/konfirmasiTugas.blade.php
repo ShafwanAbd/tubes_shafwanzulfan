@@ -20,9 +20,15 @@
                 </tr>
             </thead>
             <tbody>
+                <div class="hidden">
+                    {{ $i = 0 }}
+                </div>
                 @foreach($datas as $key=>$value)
+                <div class="hidden">
+                    {{ $i++ }}
+                </div>
                 <tr>
-                    <th scope="row">{{ $value->id }}</th>
+                    <th scope="row">{{ $i }}</th>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->universitas }}</td>
                     <td>{{ $value->email }}</td>

@@ -61,7 +61,7 @@
                     <p>{{ $model->deskripsi }}</p>
                 </div>
                 <div class="e">
-                    <p class="harga">Bayaran: {{ $model->harga }}</p>
+                    <p class="harga">Bayaran: {{ @money($model->harga) }}</p>
                     <p class="harga small-top-margin">Deadline: {{ $model->deadline }}</p>
                 </div>
                 @if($model->owner == $user->name)
@@ -70,42 +70,30 @@
                         <button type="button" class="btn btn-primary button-hapus" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Hapus Tugas
                         </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">CAUTION</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Apakah Anda Yakin Untuk Menghapus Tugas?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                                        <form method="POST" action="{{ url('tugas/'.$model->id) }}">
-                                            @csrf
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button class="btn" type="submit" href="{{ url('tugas/'.$model->id) }}">Yakin</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <a class="btn" href="{{ url('tugas/'.$model->id.'/edit') }}">Edit Tugas</a>
                         <a class="btn" href="{{ url('konfirmasi/'.$model->id) }}">Konfirmasi</a>
                     </div>
                 @else
+                    @if(Auth::user()->name == "ADMIN")
+                        <button type="button" class="btn btn-primary button-hapus" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Hapus Tugas
+                        </button>
+                    @else
                     <div class="r2">
                         @if ($konfirmasi_value == 1)
                             <a class="btn disabled">Menunggu Konfirmasi</a>
                         @elseif ($konfirmasi_value == 2)
                             <a class="btn" href="{{ url('kirimTugas/'.$konfirmasi->id.'/edit') }}">Kirim Tugas</a>
+                        @elseif ($konfirmasi_value == 3)
+                            <a class="btn disabled">Menunggu Bayaran</a>
+                        @elseif ($konfirmasi_value == 4)
+                            <a class="btn" href="{{ url('konfirmasi/'.$model->id.'/edit') }}">Kerjakan</a>
+                            <a class="btn done" data-bs-toggle="modal" data-bs-target="#exampleModal2">Done <img src="{{ asset('img/list 1 white.png') }} "></a>
                         @else
                             <a class="btn" href="{{ url('konfirmasi/'.$model->id.'/edit') }}">Kerjakan</a>
                         @endif
                     </div>
+                    @endif
                 @endif
             </div>
         </div>
@@ -116,7 +104,9 @@
                     @if ($owner)
                         @if (strlen($owner->photo) > 0)
                             <img src="{{ asset('./photoUser/'.$owner->photo) }}">
-                            @endif
+                        @else
+                            <img src="{{ asset('./img/profile.png')}}">
+                        @endif
                     @else
                         <img src="{{ asset('./img/profile.png')}}">
                     @endif
@@ -171,6 +161,48 @@
                     </div>
                     @endif
                     
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">CAUTION</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Apakah Anda Yakin Untuk Menghapus Tugas?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn tidak" data-bs-dismiss="modal">Tidak</button>
+                        <form method="POST" action="{{ url('tugas/'.$model->id) }}">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn yakin" type="submit" href="{{ url('tugas/'.$model->id) }}">Yakin</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2 -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel2">Selamat</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Silahkan Tunggu Sampai Admin Membayar Bayaran Anda, Happy Joki :)
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn tidak">Hubungi Admin</a>
+                        <button type="button" class="btn yakin" data-bs-dismiss="modal">Oke</button>
+                    </div>
                 </div>
             </div>
         </div>

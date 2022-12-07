@@ -118,8 +118,10 @@ class KirimTugasController extends Controller
         $konfirmasi = DB::table('konfirmasi')->where('id', $id)->first();
         $konfirmasi = Konfirmasi::find($konfirmasi->id);
     
-        $konfirmasi->delete();
-        return redirect('/konfirmasi/'.$konfirmasi->idTugas)->with('success', 'Berhasil Membayar Sepatu!');
+        $konfirmasi->konfirmasi++;
+        $konfirmasi->save();
+        
+        return redirect('/konfirmasi/'.$konfirmasi->idTugas)->with('success', 'Berhasil Membayar Tugas!');
     }
     /**
      * Show the form for editing the specified resource.
@@ -154,7 +156,6 @@ class KirimTugasController extends Controller
         $model->idTugas = $konfirmasi->idTugas; //
         $model->email = $user->email;
         $model->name = $user->name;
-        $model->judul = $request->judul;
         $model->pesan = $request->pesan;
         
         if ($request->file('fileTugas')){
@@ -170,7 +171,7 @@ class KirimTugasController extends Controller
         $konfirmasi->save();
         $model->save();
 
-        return redirect('tugas/'.$konfirmasi->idTugas)->with('success', 'Berhasil Menambahkan Tugas!');
+        return redirect('tugas/'.$konfirmasi->idTugas)->with('success', 'Berhasil Mengirim Tugas, Silahkan Tunggu Pembuat Untuk Membayar Anda.');
     }
 
     /**

@@ -180,7 +180,7 @@ class TugasController extends Controller
 
         $model->save();
 
-        return redirect('tugas')->with('success', 'Berhasil Mengupdate Tugas!');
+        return redirect('tugas/'.$model->id)->with('success', 'Berhasil Mengupdate Tugas!');
     }
 
     /**

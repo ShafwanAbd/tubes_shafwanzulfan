@@ -18,7 +18,6 @@
             </div>
             <div class="card-body">
                 <div class="lihatTugas-isi">
-                    <p>Judul:       {{ $kirimTugas->judul }}</p>
                     <p>Email:       {{ $kirimTugas->email }}</p>
                     <p>Name:        {{ $kirimTugas->name }}</p>
                     <p>Pesan:       {{ $kirimTugas->pesan }}</p>

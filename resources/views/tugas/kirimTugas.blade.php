@@ -10,11 +10,7 @@
         @csrf
         <input type="hidden" name="_method" value="PATCH">
         <div class="kirimTugas-isi">
-            <div class="pertanyaan">
-                <span>Judul</span>
-                <input type="text" name="judul" placeholder="Isi Judul Tugas ..." autofocus>
-            </div>
-
+            
             <div class="pertanyaan">
                 <span>Pesan</span>
                 <input type="text" name="pesan" placeholder="Isi Pesan Pada Tugas ...">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Konfirmasi;
+use App\Models\Order;
 use App\Models\Tugas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +18,11 @@ class KonfirmasiController extends Controller
      */
     public function index()
     {
+        $datas = Order::all();
+
+        return view('tugas.konfirmasiAdmin', compact(
+            'datas'
+        ));
     }
 
     /**
@@ -27,6 +33,14 @@ class KonfirmasiController extends Controller
     public function create()
     {
 
+    }
+
+    public function hapus_order($id)
+    {
+        $model = Order::find($id);
+        $model->delete();
+
+        return redirect('konfirmasi')->with('success', 'Berhasil Menghapus Order!');
     }
 
     /**
